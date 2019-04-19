@@ -1,0 +1,29 @@
+HTTP protocol request response
+
+
+WebSocket stateful protocol..persistent connection.. client establishes connection through websocket handshake
+
+
+Great advantage of WebSocket is two way communication. 
+It means situation when some user sends a message (client -> server) 
+and then server sends that message to all conected users (server -> client) — broadcast.
+
+UTF-8 is a compromise character encoding that can be as compact as ASCII 
+(if the file is just plain English text) but can also contain any unicode characters (with some increase in file size).
+
+UTF stands for Unicode Transformation Format. 
+The '8' means it uses 8-bit blocks to represent a character. The number of blocks needed to represent a character varies from 1 to 4.
+
+But for server -> client it’s a bit more complex. We have to distinguish between 3 different types of message:
+
+server assigns a color to user
+server sends entire message history
+server broadcasts a message to all users
+
+Therefore every message is a simple JavaScript object encoded into JSON.
+
+Node.js itself doesn’t have support for WebSocket but there are already some plugins that implement WebSocket protocols. two are:
+
+node-websocket-server — (now deprecated) very easy to use, but it doesn’t support draft-10. That’s a big problem because Chrome 14+ supports only draft-10 which is not compatible with older drafts. According to issues on GitHub the author is working on version 2.0 that should support also draft-10.
+WebSocket-Node — very easy to and well documented. Supports draft-10 and also older drafts.
+
